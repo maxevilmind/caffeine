@@ -22,7 +22,20 @@ function activate(context) {
 		}
 		statusBarItem.text = `Code time today: ${(totalCodeTime/1000).toString()} seconds`;
 		statusBarItem.show();
-		lastTime = thisTime;
+    lastTime = thisTime;
+
+    const dateObj = new Date();
+    const month = dateObj.getUTCMonth() + 1; //months from 1-12
+    const day = dateObj.getUTCDate();
+    const year = dateObj.getUTCFullYear();
+
+    const currentDate = year + "/" + month + "/" + day;
+
+    const state = context.workspaceState.get('caffeine.state') || {};
+
+    state[currentDate] = totalCodeTime/1000;
+
+    context.workspaceState.update('caffeine.state', state);
 	});
 
 	context.subscriptions.push(disposable);
