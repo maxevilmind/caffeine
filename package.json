@@ -3,7 +3,7 @@
 	"publisher": "maxevilmind",
 	"displayName": "caffeine",
 	"description": "Simplistic offline time tracker for your productivity. No cloud, no server, no external resorces.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -15,10 +15,12 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "extension.helloWorld",
-			"title": "Hello World"
-		}]
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			}
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",
