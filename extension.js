@@ -1,44 +1,50 @@
-const vscode = require('vscode');
+const vscode = require("vscode");
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	console.log('Congratulations, your extension "caffeine" is now active!');
-	let lastTime = Date.now();
-	let thisTime = Date.now();
-	let diff = 0;
-	let totalCodeTime = 0;
-	
-	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 1000);
-	let disposable = vscode.commands.registerCommand('type', function (args) {
-		vscode.commands.executeCommand('default:type', {
-      text: args.text
-		});
-		thisTime = Date.now();
-		diff = thisTime - lastTime;
-		if (diff <= 900000) {
-			totalCodeTime += diff;
-		}
-		statusBarItem.text = `Code time today: ${(totalCodeTime/1000).toString()} seconds`;
-		statusBarItem.show();
+  console.log('Congratulations, your extension "caffeine" is now active!');
+  let lastTime = Date.now();
+  let thisTime = Date.now();
+  let diff = 0;
+
+  const state = context.workspaceState.get("caffeine.state") || {};
+  const dateObj = new Date();
+  const month = dateObj.getUTCMonth() + 1; //months from 1-12
+  const day = dateObj.getUTCDate();
+  const year = dateObj.getUTCFullYear();
+  const currentDate = year + "/" + month + "/" + day;
+
+  let totalCodeTime = state[currentDate] || 0;
+
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  );
+  let disposable = vscode.commands.registerCommand("type", function (args) {
+    vscode.commands.executeCommand("default:type", {
+      text: args.text,
+    });
+    thisTime = Date.now();
+    diff = thisTime - lastTime;
+    if (diff <= 900000) {
+      totalCodeTime += diff;
+    }
+    statusBarItem.text = `Code time today: ${(
+      totalCodeTime / 1000
+    ).toString()} seconds`;
+    statusBarItem.show();
     lastTime = thisTime;
 
-    const dateObj = new Date();
-    const month = dateObj.getUTCMonth() + 1; //months from 1-12
-    const day = dateObj.getUTCDate();
-    const year = dateObj.getUTCFullYear();
+    const state = context.workspaceState.get("caffeine.state") || {};
 
-    const currentDate = year + "/" + month + "/" + day;
+    state[currentDate] = totalCodeTime;
 
-    const state = context.workspaceState.get('caffeine.state') || {};
+    context.workspaceState.update("caffeine.state", state);
+  });
 
-    state[currentDate] = totalCodeTime/1000;
-
-    context.workspaceState.update('caffeine.state', state);
-	});
-
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable);
 }
 exports.activate = activate;
 
@@ -46,6 +52,6 @@ exports.activate = activate;
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+  activate,
+  deactivate,
+};
