@@ -16,13 +16,15 @@ function activate(context) {
   const year = dateObj.getUTCFullYear();
   const currentDate = year + "/" + month + "/" + day;
 
-  let totalCodeTime = state[currentDate] || 0;
+  let totalCodeTime;
 
   const statusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
     1000
   );
   let disposable = vscode.commands.registerCommand("type", function (args) {
+    totalCodeTime = state[currentDate] || 0;
+
     vscode.commands.executeCommand("default:type", {
       text: args.text,
     });
@@ -31,13 +33,12 @@ function activate(context) {
     if (diff <= 900000) {
       totalCodeTime += diff;
     }
+
     statusBarItem.text = `Code time today: ${(
       totalCodeTime / 1000
     ).toString()} seconds`;
     statusBarItem.show();
     lastTime = thisTime;
-
-    const state = context.workspaceState.get("caffeine.state") || {};
 
     state[currentDate] = totalCodeTime;
 

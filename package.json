@@ -13,7 +13,7 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./extension.js",
+	"main": "./extension.ts",
 	"contributes": {
 		"commands": [
 			{
@@ -30,7 +30,7 @@
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.1",
-		"@types/node": "^12.11.7",
+		"@types/node": "^12.12.62",
 		"@types/vscode": "^1.39.0",
 		"eslint": "^6.8.0",
 		"glob": "^7.1.6",
