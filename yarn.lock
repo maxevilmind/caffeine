@@ -47,10 +47,10 @@
   resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@types/node/-/node-13.7.0.tgz#b417deda18cf8400f278733499ad5547ed1abec4"
   integrity sha1-tBfe2hjPhADyeHM0ma1VR+0avsQ=
 
-"@types/node@^12.11.7":
-  version "12.12.26"
-  resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@types/node/-/node-12.12.26.tgz#213e153babac0ed169d44a6d919501e68f59dea9"
-  integrity sha1-IT4VO6usDtFp1EptkZUB5o9Z3qk=
+"@types/node@^12.12.62":
+  version "12.20.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.7.tgz#1cb61fd0c85cb87e728c43107b5fd82b69bc9ef8"
+  integrity sha512-gWL8VUkg8VRaCAUgG9WmhefMqHmMblxe2rVpMF86nZY/+ZysU+BkAp+3cz03AixWDSSz0ks5WX59yAhv/cDwFA==
 
 "@types/vscode@^1.39.0":
   version "1.41.0"
@@ -1361,9 +1361,9 @@ write@1.0.3:
     mkdirp "^0.5.1"
 
 y18n@^4.0.0:
-  version "4.0.0"
-  resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
-  integrity sha1-le+U+F7MgdAHwmThkKEg8KPIVms=
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-4.0.1.tgz#8db2b83c31c5d75099bb890b23f3094891e247d4"
+  integrity sha512-wNcy4NvjMYL8gogWWYAO7ZFWFfHcbdbE57tZO8e4cbpj8tfUcwrwqSl3ad8HxpYWCdXcJUCeKKZS62Av1affwQ==
 
 yargs-parser@13.1.1, yargs-parser@^13.1.1:
   version "13.1.1"
